@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-06-07T20:37:37 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="clientePessoa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="40a5f3bf-5099-4255-bb87-87a51c0eba5a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="pEstadoCivil" class="java.lang.String"/>
+	<parameter name="pWhere" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["where 1=1 "+
+(($P{pProfissao}!=null) ? " and cliente.profissao='"+$P{pProfissao}+"'" : "")+
+(($P{pEstadoCivil}!=null) ? " and cliente.estadoCivil='"+$P{pEstadoCivil}+"'" : "")+
+(($P{pIdFonteIndicacao}!=null) ? " and cliente.idFonteIndicacao="+$P{pIdFonteIndicacao} : "")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pIdFonteIndicacao" class="java.lang.Integer"/>
+	<parameter name="pProfissao" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select	cliente.idCliente,
+		cliente.carteiraNit,
+        cliente.profissao,
+        cliente.estadoCivil,
+        fonteindicacao.nome as fonteIndicacaoNome,
+        pessoa.nome as clienteNome
+from	cliente
+		left join fonteindicacao on cliente.idFonteIndicacao = fonteindicacao.idFonteIndicacao		
+        left join pessoa on cliente.idPessoa = pessoa.idPessoa
+ $P!{pWhere}
+order by clienteNome]]>
+	</queryString>
+	<field name="idCliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="carteiraNit" class="java.lang.String"/>
+	<field name="profissao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estadoCivil" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fonteIndicacaoNome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="clienteNome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="137" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="47" uuid="f8fece3f-ea21-40d4-9590-397cd6dc68e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Clientes]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="68" width="555" height="20" uuid="54401f06-1d8d-4913-8300-03b251bb8b8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($P{pEstadoCivil}!=null) ? "Estado Civil: "+$F{estadoCivil} : "Estado Civil: Todos"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="88" width="555" height="20" uuid="9a511160-f3ec-46f5-887b-0389b1bf8ec4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($P{pIdFonteIndicacao}!=null) ? "Fonte de Indicação: "+$F{fonteIndicacaoNome} : "Fonte de Indicação: Todos"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="108" width="555" height="20" uuid="47a16df1-c98d-4c9c-9e80-03690efa9543"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($P{pProfissao}!=null) ? "Profissão: "+$F{profissao} : "Profissão: Todas"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="75" height="25" backcolor="#CCCCCC" uuid="d132a42e-1cf9-4503-932c-3b0f6e9f6562"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carteira NIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="0" width="120" height="25" backcolor="#CCCCCC" uuid="466fd72f-c025-44b8-ace3-a3a680826edf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fonte de indicação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="75" y="0" width="105" height="25" backcolor="#CCCCCC" uuid="eaa728a8-0790-4b30-9ead-140e4d976e65"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Profissão]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="0" width="100" height="25" backcolor="#CCCCCC" uuid="933dc1d5-e99a-4254-9e5b-1b9823903837"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado Civil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="400" y="0" width="155" height="25" backcolor="#CCCCCC" uuid="8436232f-8678-4e63-bd90-03c331038c0c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="75" height="25" uuid="c808600e-8f2a-40cb-bfdb-b538067c28ae"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{carteiraNit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="155" height="25" uuid="cd96ea76-62ec-436d-8c13-95dbfda1abec"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{carteiraNit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="25" uuid="16608330-a4e6-4bfb-a1b1-a66f54a18815"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{estadoCivil}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="120" height="25" uuid="8f296365-ff1c-4894-9665-773c488fedf4"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fonteIndicacaoNome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="0" width="105" height="25" uuid="c9c9ac07-346f-4e85-a7f9-27b48cd969dd"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{profissao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="05c70826-9de5-4ec8-8e01-7ae90784d8fb"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="9a87ac75-656e-4d4d-a89c-229c04b4d8f7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

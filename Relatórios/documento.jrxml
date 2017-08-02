@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-06-07T14:04:04 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="clientePessoa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="40a5f3bf-5099-4255-bb87-87a51c0eba5a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pIdCliente" class="java.lang.Integer"/>
+	<parameter name="pWhere" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["where 1=1 "+
+(($P{pIdCliente}!=null) ? "and documento.idCliente="+$P{pIdCliente} : "")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select	documento.dataEntrada,
+	pessoa.nome as clienteNome,
+	processo.numeroProcesso,
+	documento.nome,
+	documento.pendencia
+from	documento
+	left join cliente on documento.idCliente = cliente.idCliente
+	left join pessoa on cliente.idPessoa = pessoa.idPessoa
+	left join processo on documento.idProcesso = processo.idProcesso
+$P!{pWhere}
+order by	documento.dataEntrada desc]]>
+	</queryString>
+	<field name="dataEntrada" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="clienteNome" class="java.lang.String"/>
+	<field name="numeroProcesso" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pendencia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="106" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="47" uuid="f8fece3f-ea21-40d4-9590-397cd6dc68e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Documentos]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="68" width="555" height="20" uuid="54401f06-1d8d-4913-8300-03b251bb8b8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($P{pIdCliente}!=null) ? "Cliente: "+$F{clienteNome} : "Cliente: Todos"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="75" height="25" backcolor="#CCCCCC" uuid="d132a42e-1cf9-4503-932c-3b0f6e9f6562"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Entrada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="348" y="0" width="106" height="25" backcolor="#CCCCCC" uuid="466fd72f-c025-44b8-ace3-a3a680826edf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="75" y="0" width="120" height="25" backcolor="#CCCCCC" uuid="eaa728a8-0790-4b30-9ead-140e4d976e65"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Processo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="195" y="0" width="153" height="25" backcolor="#CCCCCC" uuid="933dc1d5-e99a-4254-9e5b-1b9823903837"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="454" y="0" width="101" height="25" backcolor="#CCCCCC" uuid="8436232f-8678-4e63-bd90-03c331038c0c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pendência]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="75" height="25" uuid="c808600e-8f2a-40cb-bfdb-b538067c28ae"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{dataEntrada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="0" width="101" height="25" uuid="cd96ea76-62ec-436d-8c13-95dbfda1abec"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pendencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="195" y="0" width="153" height="25" uuid="16608330-a4e6-4bfb-a1b1-a66f54a18815"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{clienteNome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="0" width="106" height="25" uuid="8f296365-ff1c-4894-9665-773c488fedf4"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="0" width="120" height="25" uuid="c9c9ac07-346f-4e85-a7f9-27b48cd969dd"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{numeroProcesso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="05c70826-9de5-4ec8-8e01-7ae90784d8fb"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="9a87ac75-656e-4d4d-a89c-229c04b4d8f7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

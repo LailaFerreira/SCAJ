@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-06-07T14:03:22 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="processoAgrupado" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="329609c9-fe37-4d46-b451-afd062e7e689">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     processo.`idProcesso` AS processo_idProcesso,
+     processo.`numeroProcesso` AS processo_numeroProcesso,
+     processo.`dataEntrada` AS processo_dataEntrada,
+     processo.`situacao` AS processo_situacao,
+     processo.`idCliente` AS processo_idCliente,
+     pessoa.nome AS processo_idFuncionarioAdvogado,
+     comarca.nome AS processo_idComarca,
+     natureza.nome AS processo_idNatureza,
+     instancia.nome AS processo_idInstancia,
+     vara.nome AS processo_idVara
+FROM
+     `processo` processo
+INNER JOIN
+vara ON vara.idVara = processo.`idVara`
+INNER JOIN
+instancia ON processo.`idInstancia` = instancia.idInstancia
+INNER JOIN
+natureza ON processo.`idNatureza` = natureza.idNatureza
+INNER JOIN
+comarca ON processo.`idComarca` = comarca.idComarca
+INNER JOIN
+funcionarioadvogado ON processo.`idFuncionarioAdvogado` = funcionarioadvogado.idFuncionarioAdvogado
+INNER JOIN
+pessoa ON pessoa.idPessoa = funcionarioadvogado.idPessoa
+GROUP BY
+processo.`situacao`]]>
+	</queryString>
+	<field name="processo_idProcesso" class="java.lang.Integer"/>
+	<field name="processo_numeroProcesso" class="java.lang.String"/>
+	<field name="processo_dataEntrada" class="java.lang.String"/>
+	<field name="processo_situacao" class="java.lang.String"/>
+	<field name="processo_idCliente" class="java.lang.Integer"/>
+	<field name="processo_idFuncionarioAdvogado" class="java.lang.String"/>
+	<field name="processo_idComarca" class="java.lang.String"/>
+	<field name="processo_idNatureza" class="java.lang.String"/>
+	<field name="processo_idInstancia" class="java.lang.String"/>
+	<field name="processo_idVara" class="java.lang.String"/>
+	<group name="processo_situacao">
+		<groupExpression><![CDATA[$F{processo_situacao}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="2918ee2d-d226-4255-b5a5-70b86d6eca3f"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="61">
+				<staticText>
+					<reportElement x="0" y="30" width="84" height="20" forecolor="#666666" uuid="751d0db8-5a57-48c4-b0b2-7b34e595c626"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Situação]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="84" y="30" width="86" height="20" uuid="9f6fe372-48d9-4db1-9d3e-8682382ebdd5"/>
+					<textFieldExpression><![CDATA[$V{processo_situacao_COUNT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#666666" backcolor="#E6E6E6" uuid="d47aac87-d8ff-4a99-86cf-6b99140dd9fd"/>
+					<textElement>
+						<font size="16" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Situação]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="74ac4eb9-8d2b-4021-a690-c0dee28458b8"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{processo_situacao}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="processo_idComarca">
+		<groupExpression><![CDATA[$F{processo_idComarca}]]></groupExpression>
+		<groupHeader>
+			<band height="32"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="67">
+				<staticText>
+					<reportElement x="0" y="32" width="84" height="20" forecolor="#666666" uuid="c5654d8e-536e-4634-b62f-576718f9f2d3"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Comarca]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="92" y="32" width="86" height="20" uuid="305a4897-6134-46a2-9ae6-b0d59915d551"/>
+					<textFieldExpression><![CDATA[$V{processo_idComarca_COUNT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="0" width="99" height="25" forecolor="#666666" uuid="b7c61d18-0dd0-47eb-96b0-0cae46e4657e"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+					<text><![CDATA[Comarca]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="2d5efc6e-4fa8-45ed-aa6a-211acd2ea036"/>
+					<textElement>
+						<font size="22" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{processo_idComarca}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="processo_idNatureza">
+		<groupExpression><![CDATA[$F{processo_idNatureza}]]></groupExpression>
+		<groupHeader>
+			<band height="32"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="70">
+				<textField>
+					<reportElement x="85" y="50" width="85" height="20" uuid="b0ced502-ca2d-41a8-bd7d-5f00c1ae7f67"/>
+					<textFieldExpression><![CDATA[$V{processo_idNatureza_COUNT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="50" width="84" height="20" forecolor="#666666" uuid="89acc5f7-f4e6-45d6-a81a-7423cfb67652"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Natureza]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="97" height="32" forecolor="#666666" uuid="e04a9dc9-08ac-41ce-82b0-7269f808da5a"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+					<text><![CDATA[Natureza]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="97" y="0" width="455" height="32" forecolor="#006699" uuid="90ec9ec0-3623-4665-b7be-ec39deb008dc"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{processo_idNatureza}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="processo_idInstancia">
+		<groupExpression><![CDATA[$F{processo_idInstancia}]]></groupExpression>
+		<groupHeader>
+			<band height="32"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="70">
+				<textField>
+					<reportElement x="92" y="50" width="86" height="20" uuid="3cb70ab8-ada1-4e55-a852-35b96b7e8a6e"/>
+					<textFieldExpression><![CDATA[$V{processo_idInstancia_COUNT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="50" width="84" height="20" forecolor="#666666" uuid="c6417deb-747c-44f2-a242-50341fc2f181"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Instancia]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="0" width="99" height="30" forecolor="#666666" uuid="94651d11-a337-424d-ae8f-821f2a0580f4"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+					<text><![CDATA[Instancia]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="100" y="0" width="404" height="32" forecolor="#006699" uuid="9e83ebe5-20de-41e4-91d4-bbf57976c8c2"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{processo_idInstancia}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="4487ce85-04f7-46e9-910a-fd8070f151d5"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="c57bbd27-74b5-4283-a2a4-a9a364b65ed2"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Processo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="349" y="43" width="226" height="20" forecolor="#FFFFFF" uuid="00f9980b-ed93-451b-853e-063a0a92631a"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Processos com agrupamento]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="3e29bf27-ca6a-48de-85ea-756d1cf0f7ec"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f1e3ccf1-add9-45b2-ac20-bcdd459f0c43"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="92" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e848a2ee-b1ab-4248-ba4e-2a3155e1e192"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Processo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="184" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="704e5d02-2ca4-4e60-bbc8-339d2ba55847"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data entrada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d7c7676d-ba0d-456a-b618-e92a60fe9268"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="368" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="58396ddb-9a2b-42a8-9357-9f88d843910b"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Funcionario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b1efdbdf-8cf6-47a0-bd77-0abbab63f286"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vara]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="a1e23ae2-b74b-45ba-817e-65b979226723"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="92" height="20" uuid="85bc051f-ea4d-41fd-b084-4acba15a5b95"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{processo_idProcesso}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="92" y="0" width="92" height="20" uuid="c9cf2447-389c-45df-bcbd-1c05582fb92d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{processo_numeroProcesso}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="184" y="0" width="92" height="20" uuid="96d4d80b-894e-452f-95d7-176917577680"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{processo_dataEntrada}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="0" width="92" height="20" uuid="61a70feb-713d-4fcf-9489-329c29ff1734"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{processo_idCliente}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="368" y="0" width="92" height="20" uuid="8048cbe9-2c4e-4ba9-9d3d-b46cdfedd900"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{processo_idFuncionarioAdvogado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="460" y="0" width="92" height="20" uuid="e8aaeeb2-dfa1-49eb-b609-ab1c67a7c840"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{processo_idVara}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="14d8df2a-45e1-47b7-8c06-616c809a38be"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="6daf1b1c-559b-4207-9827-ac779870d89b"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="12f824a6-40f0-4190-81bc-38d244409468"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

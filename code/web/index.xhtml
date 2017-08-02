@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui">
+      
+      <h:head>
+          <title>DevMedia - Menu</title>
+          <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+          <link href="css/main.css" rel="stylesheet" type="text/css"></link>-->
+      </h:head>
+      <h:body>
+          
+          <!--<h1 class="titulo">SCAJ - Sistema de Controle de Atividades Jurídicas</h1>
+          <div class="frase">"Dormientibus non Sucurrit Ius"</div>-->
+          <!--A tag form é necessária para criar o menu-->
+          <h:form>
+              <!--Menu-->
+              <p:menu>
+                  <p:submenu label="Cadastros">
+                      <!--Este é o ítem que permitirá clicar e navegar para a página de Cadastro de Contatos.
+                      O atributo value é usado para definir o texto que será exibido sobre o menu.
+                      O atributo outcome é usado para apontar a página que será chamada quando o menu for acionado.
+                      O atributo icon define uma imagem para o menu, neste caso usando da coleção ui-icon que já está presente na biblioteca.-->
+                      <p:menuitem value="Cargos" outcome="cargos" icon="ui-icon-person" />
+                      <p:menuitem value="Comarcas" outcome="comarcas" icon="ui-icon-person" />
+                      <p:menuitem value="Clientes" outcome="clientes" icon="ui-icon-person" />
+                  </p:submenu>
+              </p:menu>
+          </h:form>
+      </h:body>
+  </html> 
