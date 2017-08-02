@@ -5,34 +5,34 @@
         xmlns:p="http://primefaces.org/ui">
    
       <h:head>
-          <title>Comarcas</title>
+          <title>Funcionarios</title>
       </h:head>
       <h:body>
-          <h1>Cadastro de Comarcas</h1>
+          <h1>Cadastro de Funcionarios</h1>
           <h:form>
               <h3>Id</h3>
-              <p:inputText id="idComarca" value="#{comarcaBean.comarca.idComarca}"/>
-              <h3>Nome</h3>
-              <p:inputText id="nome" value="#{comarcaBean.comarca.nome}"/>
-              <h3>UF</h3>
-              <p:inputText id="uf" value="#{comarcaBean.comarca.uf}"/>
+              <p:inputText id="idFuncionario" value="#{funcionarioBean.funcionario.idFuncionarioAdvogado}"/>
+              <h3>Carteira OAB</h3>
+              <p:inputText id="carteira" value="#{funcionarioBean.funcionario.carteiraOAB}"/>
+              <h3>Pessoa</h3>
+              <p:inputText id="pessoa" value="#{funcionarioBean.funcionario.idPessoa}"/>
               
-              <p:commandButton value="Salvar" id="salvar" actionListener="#{comarcaBean.inserir()}" update="nome, idComarca, uf, tabela"/>
+              <p:commandButton value="Salvar" id="salvar" actionListener="#{funcionarioBean.inserir()}" update="carteira, idFuncionario, pessoa, tabela"/>
               <br /><br />
    
               
-              <p:dataTable var="comarca" value="#{comarcaBean.getComarcas()}" id="tabela">
+              <p:dataTable var="funcionario" value="#{funcionarioBean.funcionarios}" id="tabela">
                   <!--Coluna Nome-->
                   <p:column headerText="Id">
                   <!--aqui define-se que será exibido apenas texto nesta célula, com o componente outputText.
                   A propriedade value define o valor a ser exibido, neste caso buscando o nome do contato, lembrando que o contato descrito aqui é o mesmo da propriedade var acima.-->
-                      <h:outputText value="#{comarca.idComarca}"></h:outputText>
+                  <h:outputText value="#{funcionario.idFuncionarioAdvogado}"></h:outputText>
                   </p:column>
                   <p:column headerText="Nome">
-                      <h:outputText value="#{comarca.nome}"></h:outputText>
+                      <h:outputText value="#{funcionario.carteiraOAB}"></h:outputText>
                   </p:column>
                   <p:column headerText="UF">
-                      <h:outputText value="#{comarca.uf}"></h:outputText>
+                      <h:outputText value="#{funcionario.idPessoa.nome}"></h:outputText>
                   </p:column>
    
                   <p:column style="width:100px;text-align: center">

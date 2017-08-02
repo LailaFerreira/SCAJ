@@ -18,10 +18,7 @@ import javax.servlet.ServletException;
   //Este annotation define o tipo de escopo de sessão para ViewScoped, ou seja, a sessão permanece enquanto o formulário permanecer aberto.
   @ViewScoped
   public class ComarcaBean implements Serializable {
-   
-      //lista para armazenar os dados (apenas para simular um "banco de dados")
-      private static final List<Comarca> dados = new ArrayList();
-   
+     
       //atributo que receberá os dados digitados nos campos
       private Comarca comarca;
    

@@ -4,11 +4,12 @@ import model.Cargo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+
 import dao.CargoDAO;
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.servlet.ServletException;
    
   //Este annotation é necessário para que o formulário possa fazer chamadas à métodos desta classe.
@@ -42,7 +43,7 @@ import javax.servlet.ServletException;
    
       //Na página, ao clicar em salvar, este método é acionado. Os valores já estão no atributo contato, basta adicioná-lo à lista.
       public void inserir() throws SQLException, ClassNotFoundException {
-          cargo.setIdCargo(3);
+          
           dao.CargoDAO.obterInstancia().gravar(cargo);
           cargo = new Cargo();
       }

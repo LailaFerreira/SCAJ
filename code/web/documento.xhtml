@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui">
+   
+      <h:head>
+          <title>Documentos</title>
+      </h:head>
+      <h:body>
+          <h1>Cadastro de Documento</h1>
+          <h:form>
+              <h3>Id</h3>
+              <p:inputText id="idDocumento" value="#{documentoBean.documento.idDocumento}"/>
+              <h3>Data Entrada</h3>
+              <p:inputText id="carteira" value="#{documentoBean.documento.dataEntrada}"/>
+              <h3>Cliente</h3>
+              <p:inputText id="pessoa" value="#{documentoBean.documento.idCliente}"/> 
+              <h3>Processo</h3>
+              <p:inputText id="pessoa" value="#{documentoBean.documento.idProcesso}"/> 
+              <h3>Nome</h3>
+              <p:inputText id="pessoa" value="#{documentoBean.documento.nome}"/> 
+              <h3>Pendencia</h3>
+              <p:inputText id="pessoa" value="#{documentoBean.documento.pendencia}"/>
+              <p:commandButton value="Salvar" id="salvar" actionListener="#{documentoBean.inserir()}" update="carteira, idFuncionario, pessoa, tabela"/>
+              <br /><br />
+   
+              
+              <p:dataTable var="doc" value="#{documentoBean.documentos}" id="tabela">
+                  <!--Coluna Nome-->
+                  <p:column headerText="Documento">
+                  <!--aqui define-se que será exibido apenas texto nesta célula, com o componente outputText.
+                  A propriedade value define o valor a ser exibido, neste caso buscando o nome do contato, lembrando que o contato descrito aqui é o mesmo da propriedade var acima.-->
+                  <h:outputText value="#{doc.nome}"></h:outputText>
+                  </p:column>
+                  <p:column headerText="Cliente">
+                      <h:outputText value="#{doc.idCliente.idPessoa.nome}"></h:outputText>
+                  </p:column>
+                  <p:column headerText="Codigo documento">
+                      <h:outputText value="#{doc.idDocumento}"></h:outputText>
+                  </p:column>
+                   <p:column headerText="Numero processo">
+                       <h:outputText value="#{doc.idProcesso.numeroProcesso}"></h:outputText>
+                  </p:column>
+                   <p:column headerText="Pendencia">
+                       <h:outputText value="#{doc.pendencia}"></h:outputText>
+                  </p:column>
+   
+                  <p:column style="width:100px;text-align: center">
+                  <!--Nesta coluna será exibido um botão para excluir o registro.
+                  O botão possui uma ação definida pela propriedade actionListener e logo após atualiza os componentes listados na propriedade update-->
+                      <p:commandButton value="Excluir" 
+                                       actionListener="#{documentoBean.deletar(doc)}"
+                                       update="tabela"/>
+                  </p:column>
+              </p:dataTable>
+          </h:form>
+      </h:body>
+  </html> 

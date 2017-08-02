@@ -54,7 +54,7 @@ public class Processo implements Serializable {
     @ManyToOne(optional = false)
     private Cliente idCliente;
     @JoinColumn(name = "idComarca", referencedColumnName = "idComarca")
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     private Comarca idComarca;
     @JoinColumn(name = "idFuncionarioAdvogado", referencedColumnName = "idFuncionarioAdvogado")
     @ManyToOne(optional = false)

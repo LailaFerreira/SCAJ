@@ -33,7 +33,6 @@ import model.FonteIndicacao;
       }
    
       public void inserir() throws SQLException, ClassNotFoundException {
-          fonteIndicacao.setIdFonteIndicacao(3);
           dao.FonteIndicacaoDAO.obterInstancia().gravar(fonteIndicacao);
           fonteIndicacao = new FonteIndicacao();
       }

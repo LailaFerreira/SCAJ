@@ -44,10 +44,10 @@ public class FuncionarioAdvogado implements Serializable {
     private String carteiraOAB;
   
     @JoinColumn(name = "idCargo", referencedColumnName = "idCargo")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,cascade = CascadeType.ALL)
     private Cargo idCargo;
     @JoinColumn(name = "idPessoa", referencedColumnName = "idPessoa")
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     private Pessoa idPessoa;
 
     public FuncionarioAdvogado() {
