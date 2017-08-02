@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui">
+   
+      <h:head>
+          <title>Fonte Indicacao</title>
+      </h:head>
+      <h:body>
+          <h1>Cadastro de Fonte Indicacao</h1>
+          <h:form>
+              <h3>Id</h3>
+              <p:inputText id="idFonteIndicacao" value="#{fonteIndicacaoBean.fonteIndicacao.idFonteIndicacao}"/>
+              <h3>Nome</h3>
+              <p:inputText id="nome" value="#{fonteIndicacaoBean.fonteIndicacao.nome}"/>
+              
+              <p:commandButton value="Salvar" id="salvar" actionListener="#{fonteIndicacaoBean.inserir()}" update="idFonteIndicacao, nome"/>
+              <br /><br />  
+              <p:dataTable var="fonteIndicacao" value="#{fonteIndicacaoBean.getFonteIndicacoes()}" id="tabela">
+                  <p:column headerText="Id">
+                  <!--aqui define-se que será exibido apenas texto nesta célula, com o componente outputText.
+                  A propriedade value define o valor a ser exibido, neste caso buscando o nome do contato, lembrando que o contato descrito aqui é o mesmo da propriedade var acima.-->
+                  <h:outputText value="#{fonteIndicacao.idFonteIndicacao}"></h:outputText>
+                  </p:column>
+                  <p:column headerText="Nome">
+                      <h:outputText value="#{fonteIndicacao.nome}"></h:outputText>
+                  </p:column>
+   
+                  <p:column style="width:100px;text-align: center">
+                 
+                      <p:commandButton value="Excluir" 
+                                       actionListener="#{fonteIndicacaoBean.deletar(fonteIndicacao)}"
+                                       update="tabela"/>
+                  </p:column>
+              </p:dataTable>
+          </h:form>
+      </h:body>
+  </html> 
