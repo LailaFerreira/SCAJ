@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui">
+   
+      <h:head>
+          <title>Varas</title>
+      </h:head>
+      <h:body>
+          <h1>Cadastro de Varas</h1>
+          <h:form>
+              <h3>Id</h3>
+              <!--Campo que receberá o nome do contato. Ao sair do campo o valor é salvo no atributo contato(nome) da classe ContatoBean-->
+              <p:inputText id="idVara" value="#{varaBean.vara.idVara}"/>
+              <h3>Nome</h3>
+              <p:inputText id="nome" value="#{varaBean.vara.nome}"/>
+              
+              <!--Botão Salvar, ao ser acionado ele executa o método que está definido na propriedade actionListener 
+              e depois atualiza os componentes listado na propriedade update-->
+              <p:commandButton value="Salvar" id="salvar" actionListener="#{varaBean.inserir()}" update="nome, idVara"/>
+              <br /><br />
+   
+              <!--Tabela para exibir os dados.
+              Na propriedade value coloca-se o método que retorna a lista de dados a ser exibida.
+              A propriedade var serve para dar um nome ao objeto de iteraração da lista. Este nome é usado nas colunas para buscar os valores dos registros-->
+              <p:dataTable var="vara" value="#{varaBean.getVaras()}" id="tabela">
+                  <!--Coluna Nome-->
+                  <p:column headerText="Id">
+                  <!--aqui define-se que será exibido apenas texto nesta célula, com o componente outputText.
+                  A propriedade value define o valor a ser exibido, neste caso buscando o nome do contato, lembrando que o contato descrito aqui é o mesmo da propriedade var acima.-->
+                      <h:outputText value="#{vara.idVara}"></h:outputText>
+                  </p:column>
+                  <p:column headerText="Nome">
+                      <h:outputText value="#{vara.nome}"></h:outputText>
+                  </p:column>
+   
+                  <p:column style="width:100px;text-align: center">
+                  <!--Nesta coluna será exibido um botão para excluir o registro.
+                  O botão possui uma ação definida pela propriedade actionListener e logo após atualiza os componentes listados na propriedade update-->
+                      <p:commandButton value="Excluir" 
+                                       actionListener="#{varaBean.deletar(vara)}"
+                                       update="tabela"/>
+                  </p:column>
+              </p:dataTable>
+          </h:form>
+      </h:body>
+  </html> 
